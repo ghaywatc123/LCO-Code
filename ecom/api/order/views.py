@@ -11,7 +11,7 @@ def validate_user_session(id, token):
     UserModel = get_user_model()
 
     try:
-        user = UserModel.objects.all(pk=id)
+        user = UserModel.objects.get(pk=id)
         if user.session_token == token:
             return True
 
@@ -38,7 +38,7 @@ def add(request, id, token):
         except UserModel.DoesNotExist:
                 return JsonResponse({"Error":"User Does Not Exists"})
         
-        ordr = Order(user=user, product_name = product, total_products = total_pro, transaction_id = transaction_id, total_amount = amount)
+        ordr = Order(user=user, product_name = product, total_product = total_products, transaction_id = transaction_id, total_amount = amount)
         ordr.save()
         return JsonResponse({"Success":True, "Error":False, "Msg":"Order Placed Successfully"})
 
