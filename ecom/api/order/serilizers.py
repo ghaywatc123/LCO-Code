@@ -6,4 +6,4 @@ from .models import Order
 class OrderSerilizer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
-        field = ('user')
+        fields = '__all__'
